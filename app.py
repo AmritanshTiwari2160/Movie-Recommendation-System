@@ -18,7 +18,7 @@ def recommend(movie):
 
 movies_dict = pickle.load(open('movie_dict.pkl', 'rb'))
 movies = pd.DataFrame(movies_dict)
-# similarity = pickle.load(open('similarity.pkl', 'rb'))
+similarity = pickle.load(open('similarity.pkl', 'rb'))
 
 # Get the total number of chunk files
 chunk_files = [file for file in os.listdir() if file.startswith('chunk_')]
@@ -30,8 +30,6 @@ for i in range(num_chunks):
     with open(f'chunk_{i}.pkl', 'rb') as file:
         chunk_data = pickle.load(file)
         merged_data.extend(chunk_data)
-
-similarity = merged_data
 
 split_size = 10000  # Number of elements per split
 # Split the data into smaller chunks
